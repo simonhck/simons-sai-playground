@@ -72,7 +72,7 @@
       "buildCommand": "build",
       "runCommand": "next:start"
     },
-    "simons-sai-playground": {
+    "simons-sai-editing-host": {
       "path": "./website",
       "nodeVersion": "22.22.0",
       "jssDeploymentSecret": "110F1C44A496B45478640DD36F80C18C9",
