@@ -106,8 +106,14 @@ export const Intro = ({ fields, page }: HeroBannerProps): JSX.Element => {
   );
 };
 
-const HeroBanner = (props: HeroBannerProps): JSX.Element => (
+/**
+ * Default variant – registered as the primary React implementation in the
+ * XM Cloud Pages editor via the component map spreading this module's named exports.
+ * The Pages editor expects a named `Default` export; a `default` export alone
+ * is not detected and causes the "missing React implementation" warning.
+ */
+export const Default = (props: HeroBannerProps): JSX.Element => (
   <Intro {...props} />
 );
 
-export default HeroBanner;
+export default Default;
