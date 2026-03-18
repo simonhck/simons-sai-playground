@@ -1,0 +1,40 @@
+# Netlify configuration for Sitecore XM Cloud Next.js rendering host
+# See: https://docs.netlify.com/configure-builds/file-based-configuration/
+#
+# ─── Required environment variables ──────────────────────────────────────────
+# Set these in the Netlify UI under Site configuration > Environment variables.
+#
+#   SITECORE_EDGE_CONTEXT_ID            Your XM Cloud Edge Context ID (server-side)
+#   NEXT_PUBLIC_SITECORE_EDGE_CONTEXT_ID  Your XM Cloud Edge Context ID (client-side)
+#   NEXT_PUBLIC_DEFAULT_SITE_NAME       The default site name configured in XM Cloud
+#   NEXT_PUBLIC_DEFAULT_LANGUAGE        The default language (e.g. "en")
+#   SITECORE_EDITING_SECRET             Secret token to secure the /api/editing/* endpoint
+#   SITECORE_EDITING_HOST_PUBLIC_URL    The public Netlify URL of this rendering host
+#                                       (e.g. https://my-site.netlify.app).
+#                                       Register this URL as the rendering host in the
+#                                       XM Cloud Deploy Portal.
+#
+# Optional:
+#   NEXT_PUBLIC_PERSONALIZE_SCOPE       Sitecore Personalize scope identifier
+#   PERSONALIZE_MIDDLEWARE_CDP_TIMEOUT  Timeout (ms) for CDP requests (default: 400)
+#   PERSONALIZE_MIDDLEWARE_EDGE_TIMEOUT Timeout (ms) for Edge requests (default: 400)
+#   SITECORE_AUTH_CLIENT_ID             Client ID for Design Library
+#   SITECORE_AUTH_CLIENT_SECRET         Client secret for Design Library
+# ─────────────────────────────────────────────────────────────────────────────
+
+[build]
+  # Build command - generates the Sitecore component map, runs SDK tooling
+  # (generateSites, generateMetadata, writeImportMap), and builds the Next.js app.
+  # SITECORE_EDGE_CONTEXT_ID must be set so generateSites() can fetch site data from Edge.
+  command = "npm run build"
+  # Publish directory - output of the Next.js build
+  publish = ".next"
+
+[build.environment]
+  # Pin the Node.js version to match the XM Cloud deployment configuration
+  NODE_VERSION = "22"
+
+# Required for full Next.js App Router support on Netlify:
+# SSR, ISR, middleware as Edge Functions, Netlify Image CDN, and API routes.
+[[plugins]]
+  package = "@netlify/plugin-nextjs"

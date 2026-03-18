@@ -21,6 +21,9 @@
 # vercel
 .vercel
 
+# netlify local cache
+.netlify
+
 # sitecore temp files
 .sitecore/*
 # except for component-map
