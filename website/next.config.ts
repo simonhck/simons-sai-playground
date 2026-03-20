@@ -31,6 +31,34 @@ const nextConfig: NextConfig = {
     unoptimized: process.env.NODE_ENV === 'development',
   },
   
+  // Add headers for XM Cloud Pages Editor CORS support
+  // This enables the editing endpoints to receive cross-origin requests from the XM Cloud editor
+  headers: async () => {
+    return [
+      {
+        source: '/api/editing/:path*',
+        headers: [
+          {
+            key: 'Access-Control-Allow-Origin',
+            value: '*',
+          },
+          {
+            key: 'Access-Control-Allow-Methods',
+            value: 'GET, POST, OPTIONS',
+          },
+          {
+            key: 'Access-Control-Allow-Headers',
+            value: 'Content-Type, Authorization, X-Requested-With',
+          },
+          {
+            key: 'Access-Control-Allow-Credentials',
+            value: 'true',
+          },
+        ],
+      },
+    ];
+  },
+  
   // use this configuration to serve the sitemap.xml and robots.txt files from the API route handlers
   rewrites: async () => {
     return [
