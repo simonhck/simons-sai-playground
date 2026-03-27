@@ -1,6 +1,6 @@
 import { isDesignLibraryPreviewData } from "@sitecore-content-sdk/nextjs/editing";
 import { notFound } from "next/navigation";
-import { draftMode } from "next/headers";
+import { cookies, draftMode } from "next/headers";
 import { SiteInfo } from "@sitecore-content-sdk/nextjs";
 import sites from ".sitecore/sites.json";
 import { routing } from "src/i18n/routing";
@@ -11,10 +11,12 @@ import components from ".sitecore/component-map";
 import Providers from "src/Providers";
 import { NextIntlClientProvider } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
+import { getOverrides } from "src/lib/timed-preview/override-store";
+import { applyFieldOverrides } from "src/lib/timed-preview/apply-overrides";
 
 // Configure dynamic rendering to avoid SSR issues with client-side hooks
 // This ensures all pages are rendered on-demand rather than pre-rendered at build time
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
 type PageProps = {
   params: Promise<{
@@ -51,11 +53,21 @@ export default async function Page({ params, searchParams }: PageProps) {
     notFound();
   }
 
+  const cookieStore = await cookies();
+  const timedPreviewKey = cookieStore.get("timed_preview_key")?.value;
+  if (timedPreviewKey) {
+    const overrides = getOverrides(timedPreviewKey);
+    console.log("Timed Preview Key:", timedPreviewKey, "Overrides:", overrides);
+    if (overrides) {
+      applyFieldOverrides(page.layout, overrides);
+    }
+  }
+
   // Fetch the component data from Sitecore (Likely will be deprecated)
   const componentProps = await client.getComponentData(
     page.layout,
     {},
-    components
+    components,
   );
 
   return (
@@ -81,7 +93,7 @@ export const generateStaticParams = async () => {
       : sites.map((site: SiteInfo) => site.name);
     return await client.getAppRouterStaticParams(
       allowedSites,
-      routing.locales.slice()
+      routing.locales.slice(),
     );
   }
   return [];
