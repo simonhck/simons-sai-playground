@@ -38,3 +38,14 @@
 # SSR, ISR, middleware as Edge Functions, Netlify Image CDN, and API routes.
 [[plugins]]
   package = "@netlify/plugin-nextjs"
+
+# CORS headers for XM Cloud Pages Editor integration
+# These headers allow the editing endpoints to receive cross-origin requests
+[[headers]]
+  for = "/api/editing/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Methods = "GET, POST, OPTIONS"
+    Access-Control-Allow-Headers = "Content-Type, Authorization, X-Requested-With, sc_editMode, sc_layoutKind, sc_itemid, sc_lang, sc_site, sc_version, sc_variant"
+    Access-Control-Allow-Credentials = "true"
+    Access-Control-Max-Age = "86400"
