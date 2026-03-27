@@ -31,7 +31,13 @@ export function applyFieldOverrides(
   const route = layoutData?.sitecore?.route;
   if (!route?.placeholders) return;
 
-  walkPlaceholders(route.placeholders, overrides);
+  // Discover the media base URL from existing image fields in the layout.
+  // The Layout Service resolves images to the Edge delivery CDN, e.g.
+  //   "https://edge-beta.sitecorecloud.io/-/media/GUID.ashx"
+  // We extract the origin so overridden images use the same CDN.
+  const mediaBaseUrl = discoverMediaBaseUrl(route.placeholders);
+
+  walkPlaceholders(route.placeholders, overrides, mediaBaseUrl);
 }
 
 // ---------------------------------------------------------------------------
@@ -41,18 +47,19 @@ export function applyFieldOverrides(
 function walkPlaceholders(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   placeholders: Record<string, any[]>,
-  overrides: Record<string, Record<string, string>>
+  overrides: Record<string, Record<string, string>>,
+  mediaBaseUrl?: string
 ): void {
   for (const phKey of Object.keys(placeholders)) {
     const components = placeholders[phKey];
     if (!Array.isArray(components)) continue;
 
     for (const component of components) {
-      applyToComponent(component, overrides);
+      applyToComponent(component, overrides, mediaBaseUrl);
 
       // Recurse into nested placeholders (e.g. column splitters, tabs)
       if (component.placeholders) {
-        walkPlaceholders(component.placeholders, overrides);
+        walkPlaceholders(component.placeholders, overrides, mediaBaseUrl);
       }
     }
   }
@@ -61,7 +68,8 @@ function walkPlaceholders(
 function applyToComponent(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   component: any,
-  overrides: Record<string, Record<string, string>>
+  overrides: Record<string, Record<string, string>>,
+  mediaBaseUrl?: string
 ): void {
   const rawUid: string = component.uid ?? "";
   const uid = rawUid.replace(/[{}]/g, "").toLowerCase();
@@ -80,7 +88,7 @@ function applyToComponent(
       (k) => k.toLowerCase() === fieldName.toLowerCase()
     );
 
-    const resolved = resolveFieldValue(rawValue);
+    const resolved = resolveFieldValue(rawValue, mediaBaseUrl);
 
     if (existingKey) {
       component.fields[existingKey] = resolved;
@@ -88,4 +96,46 @@ function applyToComponent(
       component.fields[fieldName] = resolved;
     }
   }
+}
+
+// ---------------------------------------------------------------------------
+// Media base URL discovery
+// ---------------------------------------------------------------------------
+
+/**
+ * Scan existing image fields in the layout to find the Edge delivery base URL.
+ * Looks for `src` values containing `/-/media/` and extracts the origin.
+ *
+ * Example: `"https://edge-beta.sitecorecloud.io/-/media/GUID.ashx"`
+ *       →  `"https://edge-beta.sitecorecloud.io"`
+ */
+function discoverMediaBaseUrl(
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  placeholders: Record<string, any[]>
+): string | undefined {
+  for (const phKey of Object.keys(placeholders)) {
+    const components = placeholders[phKey];
+    if (!Array.isArray(components)) continue;
+
+    for (const component of components) {
+      const fields = component.fields;
+      if (fields) {
+        for (const field of Object.values(fields)) {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          const src = (field as any)?.value?.src as string | undefined;
+          if (src) {
+            const match = src.match(/^(https?:\/\/[^/]+)\/\-\/media\//);
+            if (match) return match[1];
+          }
+        }
+      }
+
+      // Recurse into nested placeholders
+      if (component.placeholders) {
+        const found = discoverMediaBaseUrl(component.placeholders);
+        if (found) return found;
+      }
+    }
+  }
+  return undefined;
 }

@@ -22,15 +22,22 @@
 /**
  * Convert a raw Sitecore field value to the `{ value: ... }` shape that
  * JSS components receive via `props.fields.<FieldName>`.
+ *
+ * @param mediaBaseUrl  Optional base URL for media assets (e.g.
+ *   `"https://edge-beta.sitecorecloud.io"`).  When provided, image `src`
+ *   values are generated as absolute URLs matching the Edge delivery origin.
  */
-export function resolveFieldValue(rawValue: string): { value: unknown } {
+export function resolveFieldValue(
+  rawValue: string,
+  mediaBaseUrl?: string
+): { value: unknown } {
   if (!rawValue) return { value: "" };
 
   const trimmed = rawValue.trim();
 
   // ── Image field ──────────────────────────────────────────────────────────
   if (trimmed.startsWith("<image ")) {
-    return { value: parseImageXml(trimmed) };
+    return { value: parseImageXml(trimmed, mediaBaseUrl) };
   }
 
   // ── General Link field ───────────────────────────────────────────────────
@@ -62,13 +69,17 @@ export function resolveFieldValue(rawValue: string): { value: unknown } {
  * Input:  `<image mediaid="{GUID}" alt="Hero" width="800" height="600" />`
  * Output: `{ src: "/-/media/GUID.ashx", alt: "Hero", width: "800", height: "600" }`
  */
-function parseImageXml(xml: string): Record<string, string> {
+function parseImageXml(
+  xml: string,
+  mediaBaseUrl?: string
+): Record<string, string> {
   const attrs = extractXmlAttributes(xml);
 
   const mediaid = (attrs.mediaid || "").replace(/[{}]/g, "");
+  const base = mediaBaseUrl ? mediaBaseUrl.replace(/\/+$/, "") : "";
 
   return {
-    src: mediaid ? `/-/media/${mediaid}.ashx` : "",
+    src: mediaid ? `${base}/-/media/${mediaid}.ashx` : "",
     alt: attrs.alt ?? "",
     width: attrs.width ?? "",
     height: attrs.height ?? "",
