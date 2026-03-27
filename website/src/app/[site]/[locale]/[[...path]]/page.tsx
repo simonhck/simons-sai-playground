@@ -11,7 +11,6 @@ import components from ".sitecore/component-map";
 import Providers from "src/Providers";
 import { NextIntlClientProvider } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
-import { getOverrides } from "src/lib/timed-preview/override-store";
 import { applyFieldOverrides } from "src/lib/timed-preview/apply-overrides";
 
 // Configure dynamic rendering to avoid SSR issues with client-side hooks
@@ -54,13 +53,12 @@ export default async function Page({ params, searchParams }: PageProps) {
   }
 
   const cookieStore = await cookies();
-  const timedPreviewKey = cookieStore.get("timed_preview_key")?.value;
-  if (timedPreviewKey) {
-    const overrides = getOverrides(timedPreviewKey);
-    console.log("Timed Preview Key:", timedPreviewKey, "Overrides:", overrides);
-    if (overrides) {
-      applyFieldOverrides(page.layout, overrides);
-    }
+  const overridesB64 = cookieStore.get("timed_preview_overrides")?.value;
+  if (overridesB64) {
+    const overrides = JSON.parse(
+      Buffer.from(overridesB64, "base64").toString("utf-8"),
+    );
+    applyFieldOverrides(page.layout, overrides);
   }
 
   // Fetch the component data from Sitecore (Likely will be deprecated)

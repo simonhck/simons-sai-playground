@@ -19,13 +19,28 @@
 // Public API
 // ---------------------------------------------------------------------------
 
+/** Check whether a raw Sitecore field value is an image XML string. */
+export function isImageXml(rawValue: string): boolean {
+  return rawValue.trim().startsWith("<image ");
+}
+
+/**
+ * Extract the normalised mediaid (lowercase, no braces) from a raw Sitecore
+ * image XML string.  Returns `null` if parsing fails.
+ */
+export function parseImageMediaId(rawValue: string): string | null {
+  const attrs = extractXmlAttributes(rawValue);
+  const raw = attrs.mediaid;
+  return raw ? raw.replace(/[{}]/g, "").toLowerCase() : null;
+}
+
 /**
  * Convert a raw Sitecore field value to the `{ value: ... }` shape that
  * JSS components receive via `props.fields.<FieldName>`.
  *
  * @param mediaBaseUrl  Optional base URL for media assets (e.g.
- *   `"https://edge-beta.sitecorecloud.io"`).  When provided, image `src`
- *   values are generated as absolute URLs matching the Edge delivery origin.
+ *   `"https://xmc-host.sitecorecloud.io"`).  When provided, image `src`
+ *   values are generated as absolute URLs using that origin.
  */
 export function resolveFieldValue(
   rawValue: string,
