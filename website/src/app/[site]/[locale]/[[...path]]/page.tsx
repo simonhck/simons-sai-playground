@@ -13,9 +13,9 @@ import { NextIntlClientProvider } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 import { applyFieldOverrides } from "src/lib/timed-preview/apply-overrides";
 
-// Configure dynamic rendering to avoid SSR issues with client-side hooks
-// This ensures all pages are rendered on-demand rather than pre-rendered at build time
-export const dynamic = "force-dynamic";
+// ISR: statically generate pages and revalidate every 300 seconds (5 minutes).
+// Content published in Sitecore will appear on the live site after this interval.
+export const revalidate = 300;
 
 type PageProps = {
   params: Promise<{
@@ -52,13 +52,18 @@ export default async function Page({ params, searchParams }: PageProps) {
     notFound();
   }
 
-  const cookieStore = await cookies();
-  const overridesB64 = cookieStore.get("timed_preview_overrides")?.value;
-  if (overridesB64) {
-    const overrides = JSON.parse(
-      Buffer.from(overridesB64, "base64").toString("utf-8"),
-    );
-    applyFieldOverrides(page.layout, overrides);
+  // Apply timed preview overrides only in draft/preview mode.
+  // cookies() forces dynamic rendering, so it must be kept inside the draft block
+  // to preserve static generation / ISR for published pages.
+  if (draft.isEnabled) {
+    const cookieStore = await cookies();
+    const overridesB64 = cookieStore.get("timed_preview_overrides")?.value;
+    if (overridesB64) {
+      const overrides = JSON.parse(
+        Buffer.from(overridesB64, "base64").toString("utf-8"),
+      );
+      applyFieldOverrides(page.layout, overrides);
+    }
   }
 
   // Fetch the component data from Sitecore (Likely will be deprecated)
