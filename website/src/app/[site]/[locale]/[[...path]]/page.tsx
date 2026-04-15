@@ -13,10 +13,6 @@ import { NextIntlClientProvider } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 import { applyFieldOverrides } from "src/lib/timed-preview/apply-overrides";
 
-// ISR: statically generate pages and revalidate every 300 seconds (5 minutes).
-// Content published in Sitecore will appear on the live site after this interval.
-export const revalidate = 300;
-
 type PageProps = {
   params: Promise<{
     site: string;
@@ -29,10 +25,11 @@ type PageProps = {
 
 export default async function Page({ params, searchParams }: PageProps) {
   const { site, locale, path } = await params;
-  const draft = await draftMode();
 
   // Set site and locale to be available in src/i18n/request.ts for fetching the dictionary
   setRequestLocale(`${site}_${locale}`);
+
+  const draft = await draftMode();
 
   // Fetch the page data from Sitecore
   let page;
@@ -86,16 +83,8 @@ export default async function Page({ params, searchParams }: PageProps) {
 // pages for SSG ("paths", as tokenized array).
 export const generateStaticParams = async () => {
   if (process.env.NODE_ENV !== "development" && scConfig.generateStaticPaths) {
-    // Filter sites to only include the sites this starter is designed to serve.
-    // This prevents cross-site build errors when multiple starters share the same XM Cloud instance.
-    const defaultSite = scConfig.defaultSite;
-    const allowedSites = defaultSite
-      ? sites
-          .filter((site: SiteInfo) => site.name === defaultSite)
-          .map((site: SiteInfo) => site.name)
-      : sites.map((site: SiteInfo) => site.name);
     return await client.getAppRouterStaticParams(
-      allowedSites,
+      sites.map((site: SiteInfo) => site.name),
       routing.locales.slice(),
     );
   }

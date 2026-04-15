@@ -1,5 +1,7 @@
 import { createEditingRenderRouteHandlers } from '@sitecore-content-sdk/nextjs/route-handler';
 
+export const dynamic = 'force-dynamic';
+
 /**
  * API route to handler Sitecore Editor rendeing.
  * When using custom server URL, it should match the rendering host from your Sitecore configuration,
