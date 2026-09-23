@@ -1,0 +1,37 @@
+﻿---
+ID: "5d99f899-67bd-6cae-9c6e-db41c48e33c7"
+Parent: "895e25c4-12b2-4b2c-8233-82f3b79eef53"
+Template: "bc71d442-3e4f-46ba-887c-746e54f9bb83"
+Path: "/sitecore/system/Settings/Services/Rendering Hosts/simons-sai-editing-host"
+SharedFields:
+- ID: "3121c257-53cf-464a-b736-98b418876057"
+  Hint: AppName
+  Value: "simons-sai-editing-host"
+- ID: "94470b31-e282-4d8d-bc54-85689efb294c"
+  Hint: ServerSideRenderingEngineConfigUrl
+  Value: "https://xmc-52onkiffejpg7r1pysyqzv-eh.sitecorecloud.io/api/editing/config"
+- ID: "9c6106ea-7a5a-48e2-8cad-f0f693b1e2d4"
+  Hint: __Read Only
+  Value: 1
+- ID: "e32c1801-79b3-4fc1-a9c4-3c6e6c2968ae"
+  Hint: ServerSideRenderingEngineApplicationUrl
+  Value: "https://xmc-52onkiffejpg7r1pysyqzv-eh.sitecorecloud.io"
+- ID: "fc76919b-0d7c-4732-865d-2af795fb38a4"
+  Hint: ServerSideRenderingEngineEndpointUrl
+  Value: "https://xmc-52onkiffejpg7r1pysyqzv-eh.sitecorecloud.io/api/editing/render"
+Languages:
+- Language: "de-CH"
+  Versions:
+  - Version: 1
+- Language: "de-DE"
+  Versions:
+  - Version: 1
+- Language: en
+  Versions:
+  - Version: 1
+- Language: "pt-PT"
+  Versions:
+  - Version: 1
+- Language: "tr-TR"
+  Versions:
+  - Version: 1

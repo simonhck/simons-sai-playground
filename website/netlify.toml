@@ -20,6 +20,8 @@
 #   PERSONALIZE_MIDDLEWARE_EDGE_TIMEOUT Timeout (ms) for Edge requests (default: 400)
 #   SITECORE_AUTH_CLIENT_ID             Client ID for Design Library
 #   SITECORE_AUTH_CLIENT_SECRET         Client secret for Design Library
+#   SITECORE_REVALIDATE_SECRET          Secret for POST /api/revalidate, sent by the Edge
+#                                       webhook in the x-revalidate-secret header
 # ─────────────────────────────────────────────────────────────────────────────
 
 [build]

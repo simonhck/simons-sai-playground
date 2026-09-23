@@ -1,0 +1,40 @@
+﻿---
+ID: "02b745df-69a2-45b8-843f-26019dbc4f85"
+Parent: "e38592ca-a489-4748-932b-fac2259774cb"
+Template: "e38592ca-a489-4748-932b-fac2259774cb"
+Path: "/sitecore/templates/Project/simons-sai-playground/Faceted Filter Panel/Faceted Filter Panel Folder/__Standard Values"
+SharedFields:
+- ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
+  Hint: __Masters
+  Value: |
+    {30E361A1-F92E-460A-8776-5623205C867A}
+    {E38592CA-A489-4748-932B-FAC2259774CB}
+- ID: "dbbbeca1-21c7-4906-9dd2-493c1efa59a2"
+  Hint: __Shared revision
+  Value: "5fed224d-7e38-45ce-a9e3-6332b5336c14"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20260922T235232Z
+    - ID: "52807595-0f8f-4b20-8d2a-cb71d28c6103"
+      Hint: __Owner
+      Value: |
+        sitecore\simon.hauck@merkle.com
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\simon.hauck@merkle.com
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "113aaec9-2026-42fc-81d3-574b793faa09"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\simon.hauck@merkle.com
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20260922T235232Z

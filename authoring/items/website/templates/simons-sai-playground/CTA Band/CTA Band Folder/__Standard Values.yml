@@ -1,0 +1,40 @@
+﻿---
+ID: "c5291f7c-1b6d-4a7e-a252-14bf03241ec9"
+Parent: "dac77f38-7593-44e6-a3a6-03143b23d2b3"
+Template: "dac77f38-7593-44e6-a3a6-03143b23d2b3"
+Path: "/sitecore/templates/Project/simons-sai-playground/CTA Band/CTA Band Folder/__Standard Values"
+SharedFields:
+- ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
+  Hint: __Masters
+  Value: |
+    {504691B7-86D2-4A23-A9DC-516841857C20}
+    {DAC77F38-7593-44E6-A3A6-03143B23D2B3}
+- ID: "dbbbeca1-21c7-4906-9dd2-493c1efa59a2"
+  Hint: __Shared revision
+  Value: "18303309-f010-4310-aa15-1fdbfcc0a421"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20260922T235232Z
+    - ID: "52807595-0f8f-4b20-8d2a-cb71d28c6103"
+      Hint: __Owner
+      Value: |
+        sitecore\simon.hauck@merkle.com
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\simon.hauck@merkle.com
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "97f97d32-5927-4e37-9560-a3315b1a2af1"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\simon.hauck@merkle.com
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20260922T235232Z

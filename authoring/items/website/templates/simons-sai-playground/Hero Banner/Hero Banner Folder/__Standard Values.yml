@@ -1,0 +1,40 @@
+﻿---
+ID: "f3c76352-d29b-4c57-9c63-1c1cb74948de"
+Parent: "518dede3-8071-4976-ba9b-8803c6051f29"
+Template: "518dede3-8071-4976-ba9b-8803c6051f29"
+Path: "/sitecore/templates/Project/simons-sai-playground/Hero Banner/Hero Banner Folder/__Standard Values"
+SharedFields:
+- ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
+  Hint: __Masters
+  Value: |
+    {F9E2A10F-5B87-4F12-B5EF-1AD1C1AE289C}
+    {518DEDE3-8071-4976-BA9B-8803C6051F29}
+- ID: "dbbbeca1-21c7-4906-9dd2-493c1efa59a2"
+  Hint: __Shared revision
+  Value: "b18c0499-781c-42a9-92ae-4cab94edddfd"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20260304T172747Z
+    - ID: "52807595-0f8f-4b20-8d2a-cb71d28c6103"
+      Hint: __Owner
+      Value: |
+        sitecore\simon.hauck@merkle.com
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\simon.hauck@merkle.com
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "9a0dcdbe-a724-4e81-bbc8-a02cff431615"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\simon.hauck@merkle.com
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20260304T172805Z

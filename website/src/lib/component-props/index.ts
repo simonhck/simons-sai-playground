@@ -1,7 +1,8 @@
 import { ComponentParams, ComponentRendering, Page } from '@sitecore-content-sdk/nextjs';
 
 /**
- * Shared component props
+ * Shared component props.
+ * `page` is injected by `AppPlaceholder` for every rendered component.
  */
 export type ComponentProps = {
   rendering: ComponentRendering;
@@ -24,11 +25,6 @@ export type ComponentProps = {
 };
 
 /**
- * Component props with context
- * You can access `page` by withSitecore/useSitecore
- * @example withSitecore()(ContentBlock)
- * @example const { page } = useSitecore()
+ * Alias kept for parity with the Content SDK 2.2 starter template.
  */
-export type ComponentWithContextProps = ComponentProps & {
-  page: Page;
-};
+export type ComponentWithContextProps = ComponentProps;

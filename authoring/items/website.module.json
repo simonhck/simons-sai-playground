@@ -5,9 +5,22 @@
         "path": "website",
         "includes": [
             {
-                "name": "DefaultRenderingHost",
-                "path": "/sitecore/system/Settings/Services/Rendering Hosts/Default",
+                "name": "simons-external-editing-host",
+                "path": "/sitecore/system/Settings/Services/Rendering Hosts/simons-external-editing-host",
                 "scope": "singleItem"
+            },
+            {
+                "name": "simons-sai-editing-host",
+                "path": "/sitecore/system/Settings/Services/Rendering Hosts/simons-sai-editing-host",
+                "scope": "singleItem"
+            },
+            {
+                "name": "templates",
+                "path": "/sitecore/templates/Project/simons-sai-playground"
+            },
+            {
+                "name": "renderings",
+                "path": "/sitecore/layout/Renderings/Project/simons-sai-playground"
             }
         ]
     }

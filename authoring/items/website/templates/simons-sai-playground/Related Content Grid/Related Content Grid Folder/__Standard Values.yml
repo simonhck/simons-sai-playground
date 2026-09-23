@@ -1,0 +1,40 @@
+﻿---
+ID: "d27f9cb2-26c9-4273-b3c3-a9f8ff21976f"
+Parent: "348643b5-4417-4835-926b-c7783836c0ce"
+Template: "348643b5-4417-4835-926b-c7783836c0ce"
+Path: "/sitecore/templates/Project/simons-sai-playground/Related Content Grid/Related Content Grid Folder/__Standard Values"
+SharedFields:
+- ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
+  Hint: __Masters
+  Value: |
+    {E4C5DF15-14FB-49AC-B0E4-E69F5DFCFFD1}
+    {348643B5-4417-4835-926B-C7783836C0CE}
+- ID: "dbbbeca1-21c7-4906-9dd2-493c1efa59a2"
+  Hint: __Shared revision
+  Value: "ba96b11d-89bd-415b-b02b-06054d702b4c"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20260922T235232Z
+    - ID: "52807595-0f8f-4b20-8d2a-cb71d28c6103"
+      Hint: __Owner
+      Value: |
+        sitecore\simon.hauck@merkle.com
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\simon.hauck@merkle.com
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "86b81004-c7fb-4e4d-ad00-9d0974cdffad"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\simon.hauck@merkle.com
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20260922T235232Z

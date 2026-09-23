@@ -1,19 +1,21 @@
-import { draftMode } from "next/headers";
-import Bootstrap from "src/Bootstrap";
+import { draftMode } from 'next/headers';
+import { Suspense } from 'react';
+import Bootstrap from 'src/Bootstrap';
 
 export default async function SiteLayout({
   children,
   params,
 }: {
-  readonly children: React.ReactNode;
-  readonly params: Promise<{ site: string }>;
+  children: React.ReactNode;
+  params: Promise<{ site: string }>;
 }) {
   const { site } = await params;
-  const { isEnabled } = await draftMode();
 
   return (
     <>
-      <Bootstrap siteName={site} isPreviewMode={isEnabled} />
+      <Suspense fallback={null}>
+        <Bootstrap siteName={site} isPreviewMode={(await draftMode()).isEnabled} />
+      </Suspense>
       {children}
     </>
   );

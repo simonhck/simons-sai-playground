@@ -3,8 +3,6 @@ import components from '.sitecore/component-map';
 import clientComponents from '.sitecore/component-map.client';
 import metadata from '.sitecore/metadata.json';
 
-export const dynamic = 'force-dynamic';
-
 /**
  * This API route is used by Sitecore Editor in XM Cloud
  * to determine feature compatibility and configuration.
