@@ -11,6 +11,8 @@ import * as ProductCardGrid from 'src/components/product-card-grid/ProductCardGr
 import * as PricingPlans from 'src/components/pricing-plans/PricingPlans';
 import * as PartialDesignDynamicPlaceholder from 'src/components/partial-design-dynamic-placeholder/PartialDesignDynamicPlaceholder';
 import * as HeroBanner from 'src/components/hero-banner/HeroBanner';
+import * as Header from 'src/components/header/Header';
+import * as Footer from 'src/components/footer/Footer';
 import * as FeatureGrid from 'src/components/feature-grid/FeatureGrid';
 import * as FaqAccordion from 'src/components/faq-accordion/FaqAccordion';
 import * as FacetedFilterPanel from 'src/components/faceted-filter-panel/FacetedFilterPanel';
@@ -28,6 +30,8 @@ export const componentMap = new Map<string, NextjsContentSdkComponent>([
   ['PricingPlans', { ...PricingPlans }],
   ['PartialDesignDynamicPlaceholder', { ...PartialDesignDynamicPlaceholder }],
   ['HeroBanner', { ...HeroBanner }],
+  ['Header', { ...Header }],
+  ['Footer', { ...Footer }],
   ['FeatureGrid', { ...FeatureGrid }],
   ['FaqAccordion', { ...FaqAccordion, componentType: 'client' }],
   ['FacetedFilterPanel', { ...FacetedFilterPanel, componentType: 'client' }],
