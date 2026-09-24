@@ -1,0 +1,50 @@
+{
+  "productionUrl": "https://simons-public-playground.netlify.app",
+  "responseTimeBudgetMs": 3000,
+  "notFoundPath": "/quality-gate-this-page-does-not-exist",
+  "redirects": [],
+  "requiredSelectors": ["header", "nav[aria-label=\"Main\"]", "main", "footer"],
+  "forbiddenText": [
+    "[No text in field]",
+    "Unknown component",
+    "missing React implementation",
+    "Navigation is empty",
+    "Application error: a client-side exception has occurred",
+    "Internal Server Error"
+  ],
+  "forbiddenHosts": ["--simons-public-playground.netlify.app", "localhost"],
+  "pages": [
+    {
+      "name": "Home",
+      "path": "/",
+      "structuredData": ["WebPage"]
+    },
+    {
+      "name": "About",
+      "path": "/About",
+      "structuredData": ["WebPage"]
+    },
+    {
+      "name": "Blog",
+      "path": "/Blog",
+      "structuredData": ["WebPage"]
+    },
+    {
+      "name": "Article: How to write a blog post",
+      "path": "/Blog/How-to-write-a-blog-post-for-dummies",
+      "selectors": ["time"],
+      "structuredData": ["WebPage", "Article"]
+    },
+    {
+      "name": "Article: Start doing this now",
+      "path": "/Blog/If-you-write-a-blog-start-doing-this-now-its-amazing",
+      "selectors": ["time"],
+      "structuredData": ["WebPage", "Article"]
+    },
+    {
+      "name": "Product: Photo of a dog",
+      "path": "/Products/Photo-of-a-dog",
+      "structuredData": ["WebPage"]
+    }
+  ]
+}
