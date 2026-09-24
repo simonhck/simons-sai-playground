@@ -35,6 +35,8 @@ export const Default = ({ fields, page, params }: ArticleHeroProps): JSX.Element
   }
 
   const publishDateIso = toIsoDate(fields?.PublishDate?.value);
+  // One formatted date for everything
+  const publishedDate = formatDisplayDate(publishDateIso, 'de-DE');
   const authorName = (
     findRendering(page.layout.sitecore.route?.placeholders, 'AuthorBioCard')?.fields?.Name as Field<string> | undefined
   )?.value;
@@ -45,8 +47,8 @@ export const Default = ({ fields, page, params }: ArticleHeroProps): JSX.Element
           headline: fields.Title.value,
           url: getCanonicalUrl(page),
           image: toAbsoluteImageUrl(fields.HeroImage?.value?.src),
-          datePublished: publishDateIso,
-          dateModified: publishDateIso,
+          datePublished: publishedDate,
+          dateModified: publishedDate,
           authorName,
         })
       : undefined;
@@ -75,7 +77,7 @@ export const Default = ({ fields, page, params }: ArticleHeroProps): JSX.Element
                 }
               />
             ) : publishDateIso ? (
-              <time dateTime={publishDateIso}>{formatDisplayDate(publishDateIso)}</time>
+              <time dateTime={publishDateIso}>{publishedDate}</time>
             ) : (
               // Not a date (e.g. legacy text value): show it as entered.
               fields?.PublishDate?.value && <Text field={fields.PublishDate} tag="p" />
