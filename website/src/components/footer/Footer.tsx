@@ -24,7 +24,7 @@ export const Default = ({ fields, page, params }: FooterProps): JSX.Element => {
   return (
     <div
       {...getRenderingAttributes(params)}
-      className={`mt-12 border-t border-black/10 bg-slate-50 ${params?.styles || ''}`.trim()}
+      className={`mt-12 border-t border-black/10 bg-slate-100 ${params?.styles || ''}`.trim()}
     >
       <div className="mx-auto w-full max-w-6xl px-4 py-6 text-sm text-slate-600 sm:px-6 lg:px-8">
         {copyrightText?.value || isEditing ? (
