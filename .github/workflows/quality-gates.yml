@@ -4,8 +4,9 @@ on:
   # Every PR: test the Netlify Deploy Preview of the PR's latest commit.
   pull_request:
   # Nightly: content publishes from SitecoreAI never go through this pipeline, so test production too.
-  schedule:
-    - cron: '0 5 * * *'
+  # Disabled for now; uncomment to re-enable the daily run.
+  # schedule:
+  #   - cron: '0 5 * * *'
   # Manual: test any URL.
   workflow_dispatch:
     inputs:
